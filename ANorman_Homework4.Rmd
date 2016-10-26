@@ -1,0 +1,126 @@
+---
+title: "HW 4"
+author: "Alex Norman"
+date: "October 25, 2016"
+output: 
+        html_document:
+        keep_md: true
+       
+---
+ 
+
+## Homework 4 Assignment
+
+This homework assignment is about bootstrapping to illustrate the central limit theorem. We will look at both the normal distribution with two different sample sizes and exponential with two different sample sizes.
+
+##Normal Distributions
+First we will look at a normal distirbution with the sample size of 10 to illustrate clt. 
+```{r small normal distribution}
+#We are using a sample size of 10
+n <- 10 
+nsim <- 1000
+clt.norm.small <- numeric(nsim)
+#looping through this function for i equals 1 through nism times which in this case is 1000
+for (i in 1:nsim) {
+#Assigning x to be a random value with normal distribution from the sample size of 10 with replacement
+  x <- rnorm(n)
+#finding the mean for each i where i equals 1 through 1000  
+  clt.norm.small[i] <- mean(x)
+}
+#This is getting the five figure summary 
+summary(clt.norm.small)
+#This lets us know how many values
+length(clt.norm.small)
+#This gives us the mean
+mean(clt.norm.small)
+#This will plot a histogram so we can see the central limit theorem
+hist(clt.norm.small) 
+```
+From the five figure summary we are able to see the range, 1st and 3rd Quartile, median and mean that spans roughly from -1 to 1.
+From the length we get 1000 which is what we expected since that is the amount of times it will run through the loop
+The mean should be close to 0 since that is the mean for a normal distribution.
+From the histogram we can see that the graph has a normal distribution and is centered around 0.
+ 
+Next we will look at a normal distribution with the sample size of 1000 to illustrate clt. 
+```{r big normal}
+#we have increased our sample size to 1000
+m <- 1000 
+nsim <- 1000
+clt.norm.big <- numeric(nsim)
+#looping through this function for i equals 1 through nism times which in this case is 1000
+for (i in 1:nsim) { 
+  #Assigning x to be a random value with normal distribution from the sample size of 1000 with replacement
+  x <- rnorm(m)
+  #finding the mean for each i where i equals 1 through 1000
+  clt.norm.big[i] <- mean(x)
+}
+ 
+#This is getting the five figure summary
+summary(clt.norm.big)
+#This lets us know how many values we would expect this to be 1000 since that is the amount of times we want to run through the loop
+length(clt.norm.big)
+#This gives us the mean we want this to be close to 0
+mean(clt.norm.big)
+#This will plot a histogram so we can see the central limit theorem
+hist(clt.norm.big)
+```
+From the five figure summary we are able to see the range, 1st and 3rd Quartile, median and mean which has a smaller span than the pervious example with a smaller sample size.
+From the length we get 1000 which is what we expected since that is the amount of times it will run through the loop.
+The mean should be close to 0 since that is the mean for a normal distribution and the mean of the larger sample size should be closer to 0 than the one with a smaller sample size.
+From the histogram we can see that the graph has a normal distribution and is centered around 0 and it is much narrower than the graph with a sample size of 0.
+
+##Exponential Distributions
+
+Now we will look at an exponential distribution with the sample size of 10 to illustrate clt.
+```{r small exp}
+#We are using a sample size of 10
+l <- 10 
+nsim <- 1000
+clt.exp.small <- numeric(nsim)
+#looping through this function for i equals 1 through nism times which in this case is 1000
+for (i in 1:nsim) {
+#Assigning x to be a random value with exponential distribution from the sample size of 10 with replacement
+  x <- rexp(l)
+#Finding the mean for each i where i equals 1 through 1000  
+  clt.exp.small[i] <- mean(x)
+}
+#This is getting the five figure summary
+summary(clt.exp.small)
+#This lets us know how many values we would expect this to be 1000 since that is the amount of times we want to run through the loop
+length(clt.exp.small)
+#This gives us the mean we want this close to 1
+mean(clt.exp.small)
+#This will plot a histogram so we can see the central limit theorem
+hist(clt.exp.small)
+```
+From the five figure summary we are able to see the range, 1st and 3rd Quartile, median and mean.
+From the length we get 1000 which is what we expected since that is the amount of times it will run through the loop.
+The mean should be close to 1 since that is the mean for a exponential distribution.
+From the histogram we can see that the graph is starting to look like a normal distribution centered around one but is still slightly skewed to the right.
+
+Finally we will look at an exponential distribution with the sample size of 1000 to illustrate clt.
+```{r big exp}
+#We are using a sample size of 1000
+j <- 1000 
+nsim <- 1000
+clt.exp.big <- numeric(nsim)
+#looping through this function for i equals 1 through nism times which in this case is 1000 
+for (i in 1:nsim) {
+  #Assigning x to be a random value with exponential distribution from the sample size of 1000 with replacement  
+  x <- rexp(j)
+  #Finding the mean for each i where i equals 1 through 1000  
+  clt.exp.big[i] <- mean(x)
+}
+#This is getting the five figure summary
+summary(clt.exp.big)
+#This lets us know how many values we would expect this to be 1000 since that is the amount of times we want to run through the loop
+length(clt.exp.big)
+#This gives us the mean we want this close to 1
+mean(clt.exp.big)
+#This will plot a histogram so we can see the central limit theorem
+hist(clt.exp.big)
+```
+From the five figure summary we are able to see the range, 1st and 3rd Quartile, median and mean this has a smaller range than the smaller sample size did.
+From the length we get 1000 which is what we expected since that is the amount of times it will run through the loop.
+The mean should be close to 1 since that is the mean for a exponential distribution and even closer to 1 than the smaller sample size.
+From the histogram we can see that the graph looks even more like a normal distribution centered around 1 than the smaller sample size and is more condensed.
